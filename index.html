@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Les Dés Oubliés</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="style/style.css" rel="stylesheet">
+</head>
+	<body>
+		<div class="corner-tr"></div>
+		<div class="corner-tl"></div>
+		<div class="corner-br"></div>
+		<div class="corner-bl"></div>
+		<div class="horizontal-top"></div>
+		<div class="horizontal-bottom"></div>
+		<div class="vertical-left"></div>
+		<div class="vertical-right"></div>
+		<content>
+			<div class="content-flex-container">
+				<div class="twelve-flex-container">
+					<div id="left"  style="background-image: url('./images/d12white.png')">
+						<a id="dream">?</a>
+					</div>
+					<div id="right" style="background-image: url('./images/d12black.png')">
+						<a id="nightmare">?</a>
+					</div>
+				</div>
+				<a class="result" id="total-d12">.</a>
+				<button type="submit" 
+						id="rollTwelveBtn" 
+						onclick="let total;
+								let dream = (Math.floor(Math.random() * 12) + 1);
+								let night = (Math.floor(Math.random() * 12) + 1);
+								document.getElementById('dream').innerHTML = dream;
+								document.getElementById('nightmare').innerHTML = night;
+								total = (dream + night);
+								document.getElementById('total-d12').innerHTML = 'Total: ' + total;
+								document.getElementById('total-d12').style.color = 'white';"
+								>Roll D12 x2</button>
+			</div>
+			
+			<div class="content-flex-container">
+				<div class="six-flex-container">
+					<div id="dsixdie" style="background-image: url('./images/d6grey.png')">
+						<a id="dsix">?</a>
+					</div>
+				</div>
+				<a class="result" id="total-d6">.</a>
+				<button type="submit" 
+						id="rollSixBtn"
+						onclick="document.getElementById('dsix').innerHTML = (Math.floor(Math.random() * 6) + 1);"
+								>Roll D6</button>
+			</div>
+		</content>
+		<script>
+			let twelveButton = document.querySelector('#rollTwelveBtn');
+
+			twelveButton.addEventListener('click', function() {
+			  let timeout;
+			  clearTimeout(timeout);
+			  let leftDie = document.querySelector('#left');
+			  let rightDie = document.querySelector('#right');
+			  
+			  leftDie.classList.remove('blink');
+			  rightDie.classList.remove('blink');
+			  timeout = setTimeout(function(){
+					leftDie.classList.add('blink');
+					rightDie.classList.add('blink');
+			  }, 1);
+			  timeout = setTimeout(function(){
+					leftDie.classList.remove('blink');
+					rightDie.classList.remove('blink');
+			  }, 500);
+			});
+			
+			let sixButton = document.querySelector('#rollSixBtn');
+
+			sixButton.addEventListener('click', function() {
+			  let timeout;
+			  clearTimeout(timeout);
+			  let d6 = document.querySelector('#dsixdie');
+			  
+			  d6.classList.remove('blink');
+			  timeout = setTimeout(function(){
+					d6.classList.add('blink');
+			  }, 1);
+			  timeout = setTimeout(function(){
+					d6.classList.remove('blink');
+			  }, 500);
+			});
+		</script>
+	</body>
+</html>
